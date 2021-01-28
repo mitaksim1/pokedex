@@ -1,0 +1,27 @@
+/* Cores : 
+Fundo das cartas : #982c2c
+Banda rosa clara : #efe3e3
+*/
+
+/* GLOBAL */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #c14040;
+}
+
+body, input, button {
+    font-family: 'Bree Serif', serif;
+}
+
+.homepage {
+    height: 100vh;
+    width: 100vw;
+    max-width: 90vw;
+    margin: 10px auto;;
+    border: 1px solid black;
+}
