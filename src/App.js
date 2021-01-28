@@ -1,27 +1,29 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import api from "./api";
+import styles from "./styles.css";
 
 function App() {
-  const [pokemonInfo, setPokemonInfo] = useState([]);
+  const [pokemon, setPokemon] = useState([]);
 
+  // Getting pokemons from the api
+  useEffect(() => {
+    api.get('pokemon?limit=10').then(response => {
+      const results = response.data.results;
+      setPokemon(results);
+      console.log(results);
+    }); 
+  }, []);
 
-  const getPokemon = async () =>{
-    const list = [];
-    const response = api.get("pokemon/pikachu");
-    list.push(response.data);
-    setPokemonInfo(list);
-  }
-
-  getPokemon();
-  
   return (
-    <div>
-      {/* <h1>Insira seu pokemon</h1>
+    <div className="App">
+      <h1>Insira seu pokemon</h1>
+      <div className="homepage">
       <form>
         <input />
         <button>Procurar</button>
-      </form> */}
-      <p>{pokemonInfo}</p>
+      </form>
+     
+      </div>
     </div>
   );
 }
