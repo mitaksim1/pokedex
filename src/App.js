@@ -16,7 +16,10 @@ function App() {
         // console.log(pokemonUrl);
 
         api.get(pokemonUrl).then(pokemonData => {
-          console.log(pokemonData);
+          const { name, types, id } = pokemonData.data;
+          console.log(name);
+          console.log(types);
+          console.log(id);
         })
       })
       // setPokemon(results);  
@@ -32,7 +35,9 @@ function App() {
         <input />
         <button>Procurar</button>
       </form>
-     
+      <ul>
+        <li></li>
+      </ul>
       </div>
     </div>
   );
