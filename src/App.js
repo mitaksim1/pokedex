@@ -8,23 +8,31 @@ function App() {
   // Getting pokemons from the api
   useEffect(() => {
     api.get('pokemon?limit=10').then(response => {
-      const allPokemons = response.data.results;
-      // console.log(allPokemons);
+      // Request's result
+      let allPokemons = response.data.results;
+      console.log(allPokemons);
+
       // Getting a single pokemon from the array
       allPokemons.forEach(function(pokemon) {
-        let pokemonUrl = pokemon.url;
+        displayPokemon(pokemon);
+      })
+      setPokemon(allPokemons);  
+    }); 
+  }, []);
+
+  function displayPokemon(pokemon) {
+    let pokemonUrl = pokemon.url;
         // console.log(pokemonUrl);
 
         api.get(pokemonUrl).then(pokemonData => {
-          const { name, types, id } = pokemonData.data;
-          console.log(name);
-          console.log(types);
-          console.log(id);
+          // console.log(pokemonData);
+          const { name, types, id, sprites } = pokemonData.data;
+          console.log('Nome:', name);
+          console.log('Type:', types[0]['type'].name);
+          console.log('id:', id);
+          console.log('image:', sprites.front_default);
         })
-      })
-      // setPokemon(results);  
-    }); 
-  }, [pokemon]);
+  }
 
   
   return (
