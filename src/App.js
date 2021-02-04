@@ -8,12 +8,22 @@ function App() {
   // Getting pokemons from the api
   useEffect(() => {
     api.get('pokemon?limit=10').then(response => {
-      const results = response.data.results;
-      setPokemon(results);
-      console.log(results);
-    }); 
-  }, []);
+      const allPokemons = response.data.results;
+      // console.log(allPokemons);
+      // Getting a single pokemon from the array
+      allPokemons.forEach(function(pokemon) {
+        let pokemonUrl = pokemon.url;
+        // console.log(pokemonUrl);
 
+        api.get(pokemonUrl).then(pokemonData => {
+          console.log(pokemonData);
+        })
+      })
+      // setPokemon(results);  
+    }); 
+  }, [pokemon]);
+
+  
   return (
     <div className="App">
       <h1>Insira seu pokemon</h1>
